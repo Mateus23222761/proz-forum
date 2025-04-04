@@ -1,0 +1,27 @@
+<div class="card !mb-8">
+    <div class="font-semibold text-xl mb-4">Últimos Posts</div>
+    <p-table [value]="postagensPrincipais" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+        <ng-template #header>
+            <tr>
+                <th>Id</th>
+                <th pSortableColumn="titulo">Título <p-sortIcon field="titulo"></p-sortIcon></th>
+                <th pSortableColumn="curso">Curso <p-sortIcon field="curso"></p-sortIcon></th>
+                <th pSortableColumn="autor">Autor <p-sortIcon field="autor"></p-sortIcon></th>
+                <th>Visualizar</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-postagem>
+            <tr>
+                <td style="width: 10%; min-width: 5rem;">
+                    {{postagem.id}}
+                </td>
+                <td style="width: 40%; min-width: 7rem;">{{ postagem.titulo }}</td>
+                <td style="width: 20%; min-width: 8rem;">{{ postagem.curso }}</td>
+                <td style="width: 20%; min-width: 8rem;"><p-avatar class="mr-1" [label]="postagem.autor.charAt(0)"></p-avatar>{{ postagem.autor }}</td>
+                <td style="width: 10%;">
+                    <button pButton pRipple type="button" icon="pi pi-angle-right" class="p-button p-component p-button-text p-button-icon-only"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
