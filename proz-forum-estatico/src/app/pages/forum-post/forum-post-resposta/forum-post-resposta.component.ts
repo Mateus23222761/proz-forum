@@ -35,8 +35,10 @@ export class ForumPostRespostaComponent implements OnInit {
     }
 
     enviarResposta (): void {
-        this.forumPostService.enviarRespota(this.lastResposta.id, this.titulo, this.utils.gerarTexto(this.respostaTexto));
-        this.saveResposta.emit();
+        this.forumPostService.enviarRespota(this.lastResposta.id, this.titulo, this.utils.gerarTexto(this.respostaTexto)).subscribe(() => {
+            this.saveResposta.emit();
+        });
+
     }
 
 }

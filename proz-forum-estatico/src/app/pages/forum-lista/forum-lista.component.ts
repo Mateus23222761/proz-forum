@@ -20,6 +20,8 @@ export class ForumListaComponent {
 
     constructor(private forumListaService: ForumListaService, usuarioLogadoService: UsuarioLogadoService) {
         usuarioLogadoService.getUsuarioLogado().subscribe((usuarioLogado) => {
+            console.log(usuarioLogado);
+            console.log(usuarioLogado.id);
             this.usuarioLogadoId = usuarioLogado.id
         });
     }

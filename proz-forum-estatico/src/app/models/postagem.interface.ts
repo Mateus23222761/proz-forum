@@ -9,5 +9,5 @@ export interface PostagemPrincipal {
     curso: string;
     autor: string;
     autorId: string;
-    timestamp: Date;
+    timestamp: string;
 }

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { UsuarioLogadoMock } from '../mock/usuario-logado.mock';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject, switchMap } from 'rxjs';
 import { Usuario } from '../models/usuario.interface';
 
 @Injectable({
@@ -9,10 +8,15 @@ import { Usuario } from '../models/usuario.interface';
 })
 export class UsuarioLogadoService {
 
-    constructor(private http: HttpClient, private mock: UsuarioLogadoMock) { }
+    private usuarioLogado = new Observable<Usuario>();
+
+    constructor(private http: HttpClient) {
+     }
 
     getUsuarioLogado(): Observable<Usuario> {
-        return of(this.mock.getUsuarioLogado());
+        const HTTP_LINK = 'http://localhost:3000'
+        const USUARIO_MOCK = '2394030848';
+        return this.http.get<Usuario>(`${HTTP_LINK}/usuario/${USUARIO_MOCK}`);
     }
 
 }

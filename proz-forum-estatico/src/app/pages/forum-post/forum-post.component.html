@@ -6,7 +6,7 @@
             </ng-template>
             <ng-template #subtitle>
                 <p-avatar class="mr-1" [label]="postagem.autor.charAt(0)"></p-avatar>{{postagem.autor}} <br>
-                {{postagem.timestamp.toLocaleString("pt-BR")}}
+                {{timestampToDataLegivel(postagem.timestamp)}}
             </ng-template>
             <p class="mt-4"></p>
             @for (paragrafo of filtrarPorNivel(postagem.nivel); track $index) {
@@ -17,5 +17,6 @@
         </p-card>
     </div>
 }
-
-<forum-post-resposta [lastResposta]="postagens[postagens.length-1]" (saveResposta)="ngOnInit()"></forum-post-resposta>
+@if (postagens) {
+    <forum-post-resposta [lastResposta]="postagens[postagens.length-1]" (saveResposta)="ngOnInit()"></forum-post-resposta>
+}

@@ -15,7 +15,7 @@ export class PostagemMock {
             curso: 'Enfermagem',
             autor: 'João da Silva',
             autorId: '593',
-            timestamp: new Date("2025-03-24T14:32:10Z")
+            timestamp: "2025-03-24T14:32:10Z"
         },
         {
             id: '382194',
@@ -24,7 +24,7 @@ export class PostagemMock {
             curso: 'Enfermagem',
             autor: 'Lívia Leite',
             autorId: '594',
-            timestamp: new Date("2025-03-24T15:32:10Z")
+            timestamp: "2025-03-24T15:32:10Z"
         },
         {
             id: '382194',
@@ -33,7 +33,7 @@ export class PostagemMock {
             curso: 'Enfermagem',
             autor: 'João da Silva',
             autorId: '593',
-            timestamp: new Date("2025-03-24T16:32:10Z")
+            timestamp: "2025-03-24T16:32:10Z"
         },
         {
             id: '382193',
@@ -42,7 +42,7 @@ export class PostagemMock {
             curso: 'Tecnologia',
             autor: 'João de Barro',
             autorId: '595',
-            timestamp: new Date("2025-03-23T14:32:10Z")
+            timestamp: "2025-03-23T14:32:10Z"
         },
         {
             id: '382192',
@@ -51,7 +51,7 @@ export class PostagemMock {
             curso: 'Tecnologia',
             autor: 'Maria Silva',
             autorId: '596',
-            timestamp: new Date("2025-03-23T13:32:10Z")
+            timestamp: "2025-03-23T13:32:10Z"
         },
         {
             id: '382191',
@@ -60,7 +60,7 @@ export class PostagemMock {
             curso: 'Tecnologia',
             autor: 'Maria Silva',
             autorId: '596',
-            timestamp: new Date("2025-03-23T13:32:10Z")
+            timestamp: "2025-03-23T13:32:10Z"
         },
         {
             id: '382190',
@@ -69,7 +69,7 @@ export class PostagemMock {
             curso: 'Robótica',
             autor: 'Eduardo Silveira',
             autorId: '597',
-            timestamp: new Date("2025-03-22T13:32:10Z")
+            timestamp: "2025-03-22T13:32:10Z"
         },
     ];
 
@@ -98,7 +98,7 @@ export class PostagemMock {
             curso: curso,
             autor: usuario.nome,
             autorId: usuario.id,
-            timestamp: timestamp
+            timestamp: 'timestamp'
         });
     }
 
@@ -115,7 +115,7 @@ export class PostagemMock {
             autor: usuario.nome,
             autorId: usuario.id,
             curso: usuario.curso,
-            timestamp: timestamp
+            timestamp: 'timestamp'
         });
         this.postagemList.reverse();
         return proximoId.toString();

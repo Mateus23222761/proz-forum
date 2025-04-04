@@ -30,6 +30,7 @@ export class ForumPostComponent implements OnInit {
             .subscribe((data) => {
             this.postagens = data;
             this.forumPostService.getPostagemTextoListById(this.id).subscribe((data) => {
+                console.log(data);
                 this.texto = data;
             });
         });
@@ -38,9 +39,14 @@ export class ForumPostComponent implements OnInit {
     filtrarPorNivel(nivel: number): string[] {
         if (!this.texto) return [];
         return this.texto
-        .filter((pedacoTexto) => pedacoTexto.nivelPostagem === nivel)
+        .filter((pedacoTexto) => pedacoTexto.nivel_postagem === nivel)
         .map((pedacoTexto) => pedacoTexto.texto)
         .join('')
         .split("\n");
+    }
+
+    timestampToDataLegivel(timestamp: string) : string {
+        const variavelData = new Date(timestamp);
+        return variavelData.toLocaleString("pt-BR");
     }
 }

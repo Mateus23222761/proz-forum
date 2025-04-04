@@ -4,7 +4,7 @@ import { Texto } from '../models/resposta.interface';
 import { UsuarioLogadoService } from './usuario-logado.service';
 import { PostagemMock } from '../mock/postagem.mock';
 import { TextoPostagemMock } from '../mock/texto-postagem.mock';
-import { Observable, of, switchMap, tap } from 'rxjs';
+import { map, Observable, of, switchMap, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -19,15 +19,18 @@ export class ForumAddService {
     ) { }
 
     criarPost(titulo: string, texto: Texto[]): Observable<string> {
+        const HTTP_LINK = 'http://localhost:3000';
         return this.usuarioLogadoService.getUsuarioLogado().pipe(
-            switchMap((data) => {
-                const id = this.mockPost.addPostagem(titulo, data);
-                return of(id);
+            switchMap((usuarioLogado) => {
+                return this.http.post<{id: string}>(`${HTTP_LINK}/addPostagem`, {
+                    titulo: titulo,
+                    curso: usuarioLogado.curso_id,
+                    usuario_id: usuarioLogado.id,
+                    textoList: texto
+                });
             }),
-            tap((id) => {
-                this.mock.addTextoPostagem(id, texto)
-            })
-        )
+            map((idObject) => idObject.id)
+        );
     }
 
 }

@@ -1,6 +1,6 @@
 export interface TextoPostagem {
-    idPostagem: string;
-    nivelPostagem: number;
+    id_ostagem: string;
+    nivel_postagem: number;
     sequencial: number;
     texto: string;
 }
