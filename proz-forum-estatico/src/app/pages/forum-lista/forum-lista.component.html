@@ -18,8 +18,8 @@
                 <td style="width: 40%; min-width: 7rem;">{{ postagem.titulo }}</td>
                 <td style="width: 20%; min-width: 8rem;">{{ postagem.curso }}</td>
                 <td style="width: 20%; min-width: 8rem;"><p-avatar class="mr-1" [label]="postagem.autor.charAt(0)"></p-avatar>{{ postagem.autor }}</td>
-                <td style="width: 10%;">
-                    <button pButton pRipple type="button" icon="pi pi-angle-right" class="p-button p-component p-button-text p-button-icon-only"></button>
+                <td style="width: 7%;">
+                    <button pButton pRipple type="button" routerLink="/post/{{postagem.id}}" icon="pi pi-angle-right" class="p-button p-component p-button-text p-button-icon-only"></button>
                 </td>
             </tr>
         </ng-template>

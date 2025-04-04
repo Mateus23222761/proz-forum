@@ -9,12 +9,10 @@ import { PostagemMock } from '../mock/postagem.mock';
 })
 export class ForumListaService {
 
-    mock = new PostagemMock();
+    constructor(private http: HttpClient, private mock: PostagemMock) { }
 
-  constructor(private http: HttpClient) { }
-
-  getPostagensPrincipais(): Observable<PostagemPrincipal[]> {
-    return of(this.mock.getPostagemListPrincipal());
-  }
+    getPostagensPrincipais(): Observable<PostagemPrincipal[]> {
+        return of(this.mock.getPostagemListPrincipal());
+    }
 }
 

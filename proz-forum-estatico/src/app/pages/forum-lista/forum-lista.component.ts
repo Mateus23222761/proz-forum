@@ -6,16 +6,22 @@ import { Component } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { Postagem, PostagemPrincipal } from '../../models/postagem.interface'
+import { RouterModule } from '@angular/router';
+import { UsuarioLogadoService } from '../../services/usuario-logado.service';
 
 @Component({
   selector: 'app-forum-lista',
-  imports: [CommonModule, TableModule, ButtonModule, RippleModule, AvatarModule ],
+  imports: [CommonModule, TableModule, ButtonModule, RippleModule, AvatarModule, RouterModule ],
   templateUrl: './forum-lista.component.html',
 })
 export class ForumListaComponent {
     postagensPrincipais!: PostagemPrincipal[];
+    usuarioLogadoId!: string;
 
-    constructor(private forumListaService: ForumListaService) {
+    constructor(private forumListaService: ForumListaService, usuarioLogadoService: UsuarioLogadoService) {
+        usuarioLogadoService.getUsuarioLogado().subscribe((usuarioLogado) => {
+            this.usuarioLogadoId = usuarioLogado.id
+        });
     }
 
     ngOnInit() {

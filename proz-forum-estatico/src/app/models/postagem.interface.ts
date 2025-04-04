@@ -8,5 +8,6 @@ export interface PostagemPrincipal {
     titulo: string;
     curso: string;
     autor: string;
+    autorId: string;
     timestamp: Date;
 }

@@ -1,0 +1,21 @@
+@for (postagem of postagens; track $index) {
+    <div class="mb-6">
+        <p-card>
+            <ng-template #title>
+                {{postagem.titulo}}
+            </ng-template>
+            <ng-template #subtitle>
+                <p-avatar class="mr-1" [label]="postagem.autor.charAt(0)"></p-avatar>{{postagem.autor}} <br>
+                {{postagem.timestamp.toLocaleString("pt-BR")}}
+            </ng-template>
+            <p class="mt-4"></p>
+            @for (paragrafo of filtrarPorNivel(postagem.nivel); track $index) {
+                <p>
+                    {{paragrafo}}
+                </p>
+            }
+        </p-card>
+    </div>
+}
+
+<forum-post-resposta [lastResposta]="postagens[postagens.length-1]" (saveResposta)="ngOnInit()"></forum-post-resposta>
