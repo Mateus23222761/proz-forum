@@ -1,5 +1,10 @@
 <div class="card !mb-8">
-    <div class="font-semibold text-xl mb-4">Últimos Posts</div>
+    <div class="flex flex-row justify-between">
+        <div class="font-semibold text-xl mb-4">Últimos Posts</div>
+        <div>
+            <p-button label="Adicionar Tópico" icon="pi pi-plus" size="large" routerLink="/add"/>
+        </div>
+    </div>
     <p-table [value]="postagensPrincipais" [paginator]="true" [rows]="5" responsiveLayout="scroll">
         <ng-template #header>
             <tr>

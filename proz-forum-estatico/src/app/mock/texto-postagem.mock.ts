@@ -69,10 +69,10 @@ export class TextoPostagemMock {
     }
 
     addTextoPostagem(idPostagem: string, texto: Texto[]) {
-        const ultimoNivel = this.textoPostagem.filter((texto) => texto.idPostagem === idPostagem)
+        const ultimoNivel = (this.textoPostagem.filter((texto) => texto.idPostagem === idPostagem)
         .reduce((previousValue, currentValue) => {
             return previousValue.nivelPostagem > currentValue.nivelPostagem ? previousValue : currentValue;
-        }, this.textoPostagem[0]).nivelPostagem + 1;
+        }, this.textoPostagem[0]).nivelPostagem || 0) + 1;
         texto.forEach((texto) => {
             this.textoPostagem.push({
                 idPostagem: idPostagem,

@@ -14,11 +14,11 @@ import { Router } from '@angular/router';
 })
 export class ForumPostService {
 
-    mock = new TextoPostagemMock();
-
-    mockPost = new PostagemMock();
-
-    constructor(private http: HttpClient, private usuarioLogadoService: UsuarioLogadoService) { }
+    constructor(
+        private http: HttpClient,
+        private usuarioLogadoService: UsuarioLogadoService,
+        private mock: TextoPostagemMock,
+        private mockPost: PostagemMock) { }
 
     getPostagemTextoListById(id: string): Observable<TextoPostagem[]> {
         return of(this.mock.getTextoPostagem()).pipe(delay(500));
@@ -30,7 +30,7 @@ export class ForumPostService {
 
     enviarRespota(id: string, titulo: string, texto: Texto[]) {
         this.usuarioLogadoService.getUsuarioLogado().subscribe((data) => {
-            this.mockPost.addResposta(id, titulo, data)
+            this.mockPost.addResposta(id, titulo, data);
             this.mock.addTextoPostagem(id, texto);
         });
     }

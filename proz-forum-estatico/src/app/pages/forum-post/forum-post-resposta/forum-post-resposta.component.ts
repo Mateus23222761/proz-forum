@@ -7,7 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { Postagem } from '../../../models/postagem.interface';
 import { Texto } from '../../../models/resposta.interface';
 import { ForumPostService } from '../../../services/forum-post.service.';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { UtilsService } from '../../../services/utils.service';
 
 @Component({
   selector: 'forum-post-resposta',
@@ -26,7 +27,7 @@ export class ForumPostRespostaComponent implements OnInit {
 
     respostaTexto = '';
 
-    constructor (private forumPostService: ForumPostService, private router: Router) {}
+    constructor (private forumPostService: ForumPostService, private utils: UtilsService) {}
 
     ngOnInit(): void {
         this.titulo = `RE: ${this.lastResposta.titulo}`;
@@ -34,19 +35,8 @@ export class ForumPostRespostaComponent implements OnInit {
     }
 
     enviarResposta (): void {
-        this.forumPostService.enviarRespota(this.lastResposta.id, this.titulo, this.gerarTexto(this.respostaTexto));
+        this.forumPostService.enviarRespota(this.lastResposta.id, this.titulo, this.utils.gerarTexto(this.respostaTexto));
         this.saveResposta.emit();
-    }
-
-    private gerarTexto(textoGrande: string): Texto[] {
-        const textoArray = [];
-        for (let index = 0; index < textoGrande.length; index += 200) {
-            textoArray.push({
-                sequencial: index + 1,
-                texto: textoGrande.substring(index, index + 200)
-            });
-        }
-        return textoArray;
     }
 
 }

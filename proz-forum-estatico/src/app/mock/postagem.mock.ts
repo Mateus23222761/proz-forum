@@ -101,4 +101,23 @@ export class PostagemMock {
             timestamp: timestamp
         });
     }
+
+    addPostagem(titulo: string, usuario: Usuario): string {
+        const proximoId = Number(this.postagemList.reduce((accumulator, valor) => {
+            return Number(accumulator.id) < Number(valor.id) ? valor : accumulator;
+        }, this.postagemList[0]).id) + 1;
+        const timestamp = new Date();
+        const NIVEL_PRIMEIRO_POST = 1;
+        this.postagemList.reverse().push({
+            id: proximoId.toString(),
+            nivel: NIVEL_PRIMEIRO_POST,
+            titulo: titulo,
+            autor: usuario.nome,
+            autorId: usuario.id,
+            curso: usuario.curso,
+            timestamp: timestamp
+        });
+        this.postagemList.reverse();
+        return proximoId.toString();
+    }
 }
