@@ -5,13 +5,44 @@
             <p-button label="Adicionar Tópico" icon="pi pi-plus" size="large" routerLink="/add"/>
         </div>
     </div>
-    <p-table [value]="postagensPrincipais" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+    <p-table [value]="postagensPrincipais"
+             [paginator]="true"
+             [rows]="5"
+             responsiveLayout="scroll"
+             [globalFilterFields]="['id', 'titulo', 'curso', 'autor']"
+             #postTable>
+        <ng-template #caption>
+            <div class="flex justify-between items-center flex-column sm:flex-row">
+                <button pButton label="Limpar Filtro" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(postTable)"></button>
+                <p-iconfield iconPosition="left" class="ml-auto">
+                    <p-inputicon>
+                        <i class="pi pi-search"></i>
+                    </p-inputicon>
+                    <input pInputText type="text" (input)="onGlobalFilter(postTable, $event)" placeholder="Search keyword" />
+                </p-iconfield>
+            </div>
+        </ng-template>
         <ng-template #header>
             <tr>
-                <th>Id</th>
-                <th pSortableColumn="titulo">Título <p-sortIcon field="titulo"></p-sortIcon></th>
-                <th pSortableColumn="curso">Curso <p-sortIcon field="curso"></p-sortIcon></th>
-                <th pSortableColumn="autor">Autor <p-sortIcon field="autor"></p-sortIcon></th>
+                <th>
+                    Id
+                    <p-columnFilter type="text" field="id" display="menu" placeholder="Procurar por Id"></p-columnFilter>
+                </th>
+                <th pSortableColumn="titulo">
+                    Título
+                    <p-sortIcon field="titulo"></p-sortIcon>
+                    <p-columnFilter type="text" field="titulo" display="menu" placeholder="Procurar por Título"></p-columnFilter>
+                </th>
+                <th pSortableColumn="curso">
+                    Curso
+                    <p-sortIcon field="curso"></p-sortIcon>
+                    <p-columnFilter type="text" field="curso" display="menu" placeholder="Procurar por Curso"></p-columnFilter>
+                </th>
+                <th pSortableColumn="autor">
+                    Autor
+                    <p-sortIcon field="autor"></p-sortIcon>
+                    <p-columnFilter type="text" field="autor" display="menu" placeholder="Procurar por Autor"></p-columnFilter>
+                </th>
                 <th>Visualizar</th>
             </tr>
         </ng-template>
